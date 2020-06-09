@@ -79,9 +79,14 @@ class CommentController extends Controller
      * @param  \App\Model\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request,Film $film, Comment $comment)
     {
-        //
+        $comment->update($request->all());
+
+        return response([
+            'data' => new CommentResource($comment)
+        ],Response::HTTP_CREATED);
+
     }
 
     /**
