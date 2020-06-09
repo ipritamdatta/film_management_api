@@ -22,6 +22,9 @@ $factory->define(Film::class, function (Faker $faker) {
         'photo' => 'https://picsum.photos/seed/picsum/200/300',
         'genre_id' => function(){
             return Genre::all()->random();
+        },
+        'user_id' => function(){
+            return App\User::all()->random();
         }
     ];
 });

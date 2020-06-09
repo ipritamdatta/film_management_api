@@ -9,6 +9,8 @@ use App\Http\Resources\Film\FilmCollection;
 use App\Http\Requests\FilmRequest;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
+use App\Exceptions\FilmNotBelongsToUser;
+use Auth;
 
 
 class FilmController extends Controller
@@ -100,6 +102,8 @@ class FilmController extends Controller
      */
     public function update(Request $request, Film $film)
     {
+        $this->FilmUserCheck($film);
+
         $request['slug'] = Str::slug($request->name,'-');
         $film->update($request->all());
 
@@ -117,7 +121,15 @@ class FilmController extends Controller
      */
     public function destroy(Film $film)
     {
+        $this->FilmUserCheck($film);
         $film->delete();
         return response(null, Response::HTTP_NO_CONTENT); //204 for No content
+    }
+
+    public function FilmUserCheck($film)
+    {
+        if(Auth::id() !== $film->user_id){
+            throw new FilmNotBelongsToUser;
+        }
     }
 }

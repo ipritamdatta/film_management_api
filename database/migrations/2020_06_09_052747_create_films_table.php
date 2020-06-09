@@ -29,6 +29,7 @@ class CreateFilmsTable extends Migration
             // for genre there is different table
             $table->bigInteger('genre_id')->unsigned()->index()->nullable();
             $table->foreign('genre_id')->references('id')->on('genres')->onDelete('set null');
+            $table->BigInteger('user_id')->unsigned()->index();
             $table->timestamps();
         });
     }
