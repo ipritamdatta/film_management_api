@@ -117,6 +117,7 @@ class FilmController extends Controller
      */
     public function destroy(Film $film)
     {
-        //
+        $film->delete();
+        return response(null, Response::HTTP_NO_CONTENT); //204 for No content
     }
 }
