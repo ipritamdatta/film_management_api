@@ -95,8 +95,8 @@ class CommentController extends Controller
      * @param  \App\Model\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy(Film $film,Comment $comment)
     {
-        //
+        $comment->delete();
     }
 }
