@@ -8,6 +8,8 @@ use App\Http\Resources\Film\FilmResource;
 use App\Http\Resources\Film\FilmCollection;
 use App\Http\Requests\FilmRequest;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class FilmController extends Controller
 {
@@ -63,7 +65,7 @@ class FilmController extends Controller
 
         return response([
             'data' => new FilmResource($film)
-        ], 201); //Here 201 is for HTTP_CREATED
+        ], Response::HTTP_CREATED); //Here 201 is for HTTP_CREATED
 
     }
 
@@ -98,7 +100,13 @@ class FilmController extends Controller
      */
     public function update(Request $request, Film $film)
     {
-        //
+        $request['slug'] = Str::slug($request->name,'-');
+        $film->update($request->all());
+
+        return response([
+            'data' => new FilmResource($film)
+        ],Response::HTTP_CREATED);
+
     }
 
     /**
