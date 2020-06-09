@@ -25,7 +25,7 @@ class FilmResource extends JsonResource
             'price' => $this->price,
             'country' => $this->country,
             'photo' => $this->photo,
-            'gender_id' => $this->genre_id,
+            'genre_id' => $this->genre_id,
             'href' => [
                 'comments' => route('comments.index',$this->id)
                 //URL: /api/films/{film}/comments
