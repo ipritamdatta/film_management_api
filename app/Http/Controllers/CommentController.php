@@ -6,6 +6,10 @@ use App\Model\Comment;
 use Illuminate\Http\Request;
 use App\Model\Film;
 use App\Http\Resources\CommentResource;
+use App\Http\Requests\CommentRequest;
+use Symfony\Component\HttpFoundation\Response;
+
+
 
 class CommentController extends Controller
 {
@@ -35,9 +39,15 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommentRequest $request, Film $film)
     {
-        //
+        $comment = new Comment($request->all());
+        $film->comments()->save($comment);
+
+        return response([
+            'data' => new CommentResource($comment)
+        ], Response::HTTP_CREATED);
+
     }
 
     /**
