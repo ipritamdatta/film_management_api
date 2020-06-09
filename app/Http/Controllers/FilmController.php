@@ -16,7 +16,7 @@ class FilmController extends Controller
      */
     public function index()
     {
-        return FilmCollection::collection(Film::all());
+        return FilmCollection::collection(Film::paginate(3));
     }
 
     /**

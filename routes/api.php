@@ -12,7 +12,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // For Film
 Route::apiResource('/films','FilmController');
-
 // For Comment
 Route::group(['prefix'=>'films'],function(){
     Route::apiResource('/{film}/comments','CommentController');

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Model\Comment;
 use Illuminate\Http\Request;
+use App\Model\Film;
+use App\Http\Resources\CommentResource;
 
 class CommentController extends Controller
 {
@@ -12,9 +14,9 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Film $film)
     {
-        //
+        return CommentResource::collection($film->comments);
     }
 
     /**
