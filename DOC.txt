@@ -1,0 +1,8 @@
+Genre Fields:
+genre_name
+
+Film Fields:
+name, slug, description, release,date,rating,ticket,price,country,photo,genre_id
+
+Comment Fields:
+name, comment, film_id

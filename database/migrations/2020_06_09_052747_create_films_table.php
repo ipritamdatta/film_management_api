@@ -14,7 +14,7 @@ class CreateFilmsTable extends Migration
     public function up()
     {
         Schema::create('films', function (Blueprint $table) {
-            //Fields: name, description, release,date,rating,ticket,price,country,genre,photo
+            //Fields: name, slug, description, release,date,rating,ticket,price,country,photo,genre_id
             $table->id();
             $table->string('name');
             $table->string('slug');
