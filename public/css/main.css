@@ -6,3 +6,6 @@ body {
     height: 350px;
     object-fit: cover;
 }
+img:hover {
+    opacity: 0.75;
+}
